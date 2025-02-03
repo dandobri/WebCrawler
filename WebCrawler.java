@@ -76,7 +76,6 @@ public class WebCrawler implements NewCrawler {
             queueFuture.forEach(future -> {
                 try {
                     queue.addAll(future.get().stream()
-                            // Move to extractor
                             .filter(link -> excludes.stream().noneMatch(link::contains) && links.add(link)).toList());
                 } catch (InterruptedException | ExecutionException ignored) { }
             });
